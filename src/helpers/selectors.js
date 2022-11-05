@@ -23,3 +23,20 @@ export function getAppointmentsForDay(state, day) {
 
   return result;
 };
+
+export function getInterview(state, interview) {
+
+  let result = {}
+
+  if (interview === null) {
+    return null;
+  }
+  result["student"] = interview.student;
+
+  for (const interviewerId in state.interviewers) {
+    if (interview.interviewer === Number(interviewerId)) {
+      result["interviewer"] = state.interviewers[interviewerId]
+    }
+  }
+  return result;
+}
