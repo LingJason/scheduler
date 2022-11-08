@@ -3,7 +3,6 @@ import "components/InterviewerListItem.scss";
 import classNames from "classnames";
 
 export default function InterviewerListItem(props) {
-  console.log(props);
   const interviewClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
     "interviewers__item--full": props.spots === 0

@@ -32,11 +32,32 @@ export function getInterview(state, interview) {
     return null;
   }
   result["student"] = interview.student;
-
-  for (const interviewerId in state.interviewers) {
-    if (interview.interviewer === Number(interviewerId)) {
-      result["interviewer"] = state.interviewers[interviewerId]
-    }
-  }
+  result["interviewer"] = state.interviewers[interview.interviewer]
   return result;
 }
+
+export function getInterviewersForDay(state, day) {
+
+  if (state.days.length === 0) {
+    return [];
+  }
+
+  let dayInterviewers;
+  let result = [];
+
+  for (const element of state.days) {
+    if (element.name === day) {
+      dayInterviewers = element.interviewers;
+    }
+  }
+
+  if (!dayInterviewers) {
+    return [];
+  }
+
+  for (const interviewer of dayInterviewers) {
+    result.push(state.interviewers[interviewer])
+  }
+
+  return result;
+};
