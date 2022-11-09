@@ -3,7 +3,16 @@ import "components/Application.scss";
 import "components/Appointment";
 import axios from "axios";
 
+const week = {
+  "Monday": 0,
+  "Tuesday": 1,
+  "Wednesday": 2,
+  "Thursday": 3,
+  "Friday": 4
+}
+
 export default function useApplicationData() {
+  
   const setDay = day => setState({ ...state, day });
 
   const [state, setState] = useState({
@@ -25,19 +34,33 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = [...state.days];
+    days[week[state.day]].spots--;
+
     return axios.put(`/api/appointments/${id}`, {
       interview
     })
       .then(() => {
         setState({
           ...state,
-          appointments
+          appointments,
+          days
         });
       })
   }
 
   function cancelInterview(id) {
+
+    const days = [...state.days];
+    days[week[state.day]].spots++;
+
     return axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({
+          ...state,
+          days
+        });
+      })
   }
 
   useEffect(() => {
