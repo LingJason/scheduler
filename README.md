@@ -24,3 +24,6 @@ npm test
 npm run storybook
 ```
 ## ScreenShots
+![Home Page](https://github.com/LingJason/scheduler/blob/master/doc/HomePage.png?raw=true)
+![Making an Appointment](https://github.com/LingJason/scheduler/blob/master/doc/Appointment.png?raw=true)
+![Confirming to delete](https://github.com/LingJason/scheduler/blob/master/doc/Confirmation.png?raw=true)
