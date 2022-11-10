@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+Single page application that allows users to book appointments and make changes. 
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +23,4 @@ npm test
 ```sh
 npm run storybook
 ```
+## ScreenShots
