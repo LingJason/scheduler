@@ -3,13 +3,13 @@ import "components/Application.scss";
 import "components/Appointment";
 import axios from "axios";
 
-const week = {
-  "Monday": 0,
-  "Tuesday": 1,
-  "Wednesday": 2,
-  "Thursday": 3,
-  "Friday": 4
-}
+// const week = {
+//   "Monday": 0,
+//   "Tuesday": 1,
+//   "Wednesday": 2,
+//   "Thursday": 3,
+//   "Friday": 4
+// }
 
 export default function useApplicationData() {
   
@@ -34,8 +34,15 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const days = [...state.days];
-    days[week[state.day]].spots--;
+    const days = state.days.map((day) => {
+      if(day.name === state.day) {
+        return {
+          ...day,
+          spots:day.spots - 1,
+        };
+      }
+      return day;
+    })
 
     return axios.put(`/api/appointments/${id}`, {
       interview
@@ -51,8 +58,15 @@ export default function useApplicationData() {
 
   function cancelInterview(id) {
 
-    const days = [...state.days];
-    days[week[state.day]].spots++;
+    const days = state.days.map((day) => {
+      if(day.name === state.day) {
+        return {
+          ...day,
+          spots:day.spots + 1,
+        };
+      }
+      return day;
+    })
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
