@@ -27,12 +27,20 @@ export default function useApplicationData() {
     };
 
     const days = state.days.map((day) => {
-      if(day.name === state.day) {
+      const edit = state.appointments[id].interview
+
+      if(day.name === state.day && !edit) {
         return {
           ...day,
           spots:day.spots - 1,
         };
       }
+      if(day.name === state.day && edit) {
+      console.log("HERE11")
+      return {
+        ...day,
+      };
+    }
       return day;
     })
 
@@ -50,6 +58,16 @@ export default function useApplicationData() {
 
   function cancelInterview(id) {
 
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
     const days = state.days.map((day) => {
       if(day.name === state.day) {
         return {
@@ -60,11 +78,13 @@ export default function useApplicationData() {
       return day;
     })
 
+
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         setState({
           ...state,
-          days
+          days,
+          appointments
         });
       })
   }
