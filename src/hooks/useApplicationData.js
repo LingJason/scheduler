@@ -37,7 +37,6 @@ export default function useApplicationData() {
         };
       }
       if(day.name === state.day && edit) {
-      console.log("HERE11")
       return {
         ...day,
       };

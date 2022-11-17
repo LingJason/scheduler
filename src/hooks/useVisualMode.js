@@ -22,9 +22,10 @@ export default function useVisualMode(initial) {
       return mode;
     } else {
       if (typeof history === "object") {
-        history.pop()
-        let num = history.length - 1;
-        setMode(history[num]);
+        newHistory.pop()
+        let num = newHistory.length - 1;
+        setMode(newHistory[num]);
+        setHistory(newHistory);
       }
     }
   }
