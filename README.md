@@ -5,7 +5,8 @@ Single page application that allows users to book appointments and make changes.
 ## Setup
 Clone repository
 Install dependencies with `npm install`.
-Clone <a ahref="https://github.com/lighthouse-labs/scheduler-api">scheduler-api </a> and follow the instructions provided in the link to create database
+Clone [Schedule-api](https://github.com/LingJason/scheduler-api) and follow the instructions provided in the link to create database.
+Have both the scheduler and scheduler-api running.
 
 
 ## Running Webpack Development Server
